@@ -2,6 +2,8 @@
 ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
 cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 chmod 0600 ~/.ssh/authorized_keys
+cd /opt
+wget http://mirror.cc.columbia.edu/pub/software/apache/hadoop/common/hadoop-3.1.3/hadoop-3.1.3.tar.gz
 ssh localhost
 exit
 cd
@@ -15,9 +17,7 @@ echo "export YARN_HOME=$HADOOP_HOME" >> .bash_profile.sh
 echo "export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native" >> .bash_profile.sh
 echo "export PATH=$PATH:$HADOOP_HOME/sbin:$HADOOP_HOME/bin" >> .bash_profile.sh
 source .bash_profile
-cd opt
-wget http://www-eu.apache.org/dist/hadoop/common/hadoop-3.1.3/hadoop-3.1.3.tar.gz
-tar xzf hadoop-3.1.3.tar.gz
+
 cd hadoop-3.1.3/etc/hadoop
 sudo gedit hadoop-env.sh
 echo "export JAVA_HOME=/home/fieldengineer/opt/jdk1.8.0_221" >> hadoop-env.sh
