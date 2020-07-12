@@ -1,0 +1,48 @@
+## Running Sqoop 
+
+Once hadoop and sqoop are configured, we can proceed to do the following to import 
+an SQL table to out hdfs 
+
+
+1. Create a database 
+	CREATE DATABASE db_test; 
+	USE db_test;
+
+2. Create a table in the database or import them from a csv like  in https://github.com/MontufarEric/								bigData_Plumbers/blob/master/004_SQL/setting_up_mysql.txt
+
+
+
+3. Then we have to create an user in mysql to access remotely to our database 
+	CREATE USER 'sqoop_user'@'localhost' IDENTIFIED BY 'Password1234!';
+
+4. Provide permissions to the new user to connect to your database: 
+	GRANT ALL PRIVILEGES ON db_test.* TO ‘sqoop_user’@’localhost’;
+	FLUSH PRIVILEGES;
+
+5. Now log in with your new user and try to acces the database: 
+	mysql -u sqoop_user -p
+	USE db_test
+	SELECT * FROM your_table;
+
+
+
+6. At this point, you have to be sure to source your bash_profile and have the SQOOP_HOME delcared 
+
+7. download the mysql connector fo java 
+	https://dev.mysql.com/downloads/connector/j/5.1.html
+
+8. unzip it and move it to ~/opt/sqoop/lib/
+
+9. Now sqoop should be ready for the import 
+
+	sqoop import --connect jdbc:mysql://localhost/hadoop_user --username db_test --password  Password1234! --table your_table --m 1
+
+
+jdbc:mysql://localhost/hadoop_user   	----->> the name of your database with the proper conector 
+db_test									----->> the user of mysql that you already created 
+Password1234!							----->> your password for that mysql user 
+your_table 								----->> your table in mysql
+1										----->> your replication factor 
+
+10. Lastly you can check whether the database is on your hdfs
+	hdfs dfs -cat /your_folder 

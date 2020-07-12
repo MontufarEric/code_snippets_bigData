@@ -1,0 +1,38 @@
+paruquet columnar
+orc columnar
+avro raw 
+
+disk spilling spark 
+ kafka vs kinesis vs sqs/sns ---> kpl vs kafka poducer 
+
+
+
+
+## dowload sqoop
+
+wget http://mirrors.estointernet.in/apache/sqoop/1.4.7/sqoop-1.4.7.bin__hadoop-2.6.0.tar.gz
+
+ rename it 
+
+
+## ADD SQOOP HOME
+## SQOOP HOME
+
+export SQOOP_HOME=/home/fieldengineer/opt/sqoop-1.4.7
+export PATH=$PATH:$SQOOP_HOME/bin
+
+ go to sqoop/conf
+ sqoop-env-template  ---> sqoop-env.sh
+ add hadoop home and mapred hom 
+
+470 443 4190
+
+
+
+https://medium.com/@nitingupta.bciit/setup-sqoop-to-import-mysql-data-to-hdfs-on-ubuntu-16-04-5243d9eef560
+
+
+CREATE USER ‘sqoop_test’@’localhost’ IDENTIFIED BY 'Password1234!';
+CREATE USER 'sqoop_user'@'localhost' IDENTIFIED BY 'Password1234!';
+GRANT ALL PRIVILEGES ON dp.* TO 'sqoop_user'@'localhost';
+FLUSH PRIVILEGES

@@ -1,0 +1,26 @@
+we will use netact to get data from a port 
+this will configure the listener 
+
+nc localhost  9600 -l
+
+and the sender nc localhost 9600
+
+
+For Example, in this case, I set my listener in port 9600 and send the incoming text to the a file: 
+
+nc -l 9600 > recieved.txt
+
+now we configure the sender with the proper ip address and port of the listener: 
+
+nc 192.168.0.197 9600
+hi
+this
+is 
+a 
+net
+cat
+test
+hello world!
+hello cat!
+
+We can now we can cat recieved.txt in the listener machine to see the text we have sent from the sender. 
