@@ -75,3 +75,5 @@ cd $HADOOP_HOME/sbin/
 hdfs dfs -mkdir /fieldengineer
 hdfs dfs -mkdir /fieldengineer/hadoop
 hdfs dfs -put /Downloads/Shakespeare.txt /fieldengineer/hadoop
+
+### chech for the hdfs at http://localhost:9870/
