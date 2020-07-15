@@ -69,3 +69,12 @@ Once we run the agent with flume-nc, it will start listening to localhost:44444.
 *** I removed flume-1.8.0/lib/guava-11.0.2.jar  to solve a problem when trying to sink in the hdfs  
 
  https://stackoverflow.com/questions/58688470/flume-sink-to-hdfs-error-java-lang-nosuchmethoderror-com-google-common-base-pr
+
+
+================================================================================================
+
+Flume + twitter 
+
+Here we connect to the twitter API to retrieve tweets with a given keyword. For this, it is necessary to have a twitter developer account and the proper credentials to make requests to the API. 
+
+The file flume-twitter is the configuration file for this twitter agent that will retrieve our tweets

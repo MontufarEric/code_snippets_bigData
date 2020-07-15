@@ -1,0 +1,21 @@
+1. Big data is the set of tools and knowledge used to ingest, store and process huge amounts of data. The five V's stand for Variety, Velocity, Volume, Veracity and Value which are the main features of the problems that big data deal with. 
+
+2. Hadoop is a set of technological tools that is used to deal with big data problems. Hadoop solves may of the big data requirements like storage and processing. The components of Hadoop are th Hadoop Distributed File System (HDFS), MapReduce, and Yarn. The first is a file system that allows to store files along a cluster, the second is a method to split data and aggregate it in a distributed way and the later is a manager of the cluster. 
+
+3. 	The port of the HDFS moved from localhost:9000 to localhost:9870
+	hadoop 3 is faster 
+	the HDFS block size is twice as big as in Hadoop 2
+
+4. Is a saved state of the cluster metadata 
+
+5. The input split is the way in which the incoming data is splited for processing purposes, while the HDFS block is the allocated memory in disk for a block of data in the HDFS. 
+
+6  	Namenode is the master note of the cluster and the one that keeps the metadata
+	Backup node is a worker node that can play the role of namenode if something happens to the Namenode
+	Checkpoint Namenode is a node that saves the metadata of the Namenode every since. 
+
+8 Spache Sqoop was designed for moving relational data bases to the HDFS. Flume is a tool that allows data ingestion from many different sources, transport the data through a channel and sinking the data in several different places like the HDFS, S3 containers, etc. 
+
+9. 	Map --->			 This stage applies a given function to all the elements of the input
+	Shuffle and sort --->This aranges the data for the future porcessing
+	Reduce  --->		 This aggregates the key, value data based on a given feature

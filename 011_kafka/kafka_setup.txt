@@ -1,0 +1,93 @@
+Apache kafka 
+and confluent   --> ksql (kafka sql), kstrings, kanalysis
+
+data ingestion in real time 
+
+zookeeper is your resource manager 
+
+kafka faul tolerance 
+
+saves file for uo to 30 days
+
+data --> topic --> zookeeper (stores data 7 days)
+
+
+we download kafka
+
+wget https://archive.apache.org/dist/kafka/2.0.0/kafka_2.12-2.0.0.tgz
+tar xvf kafka_2.12-2.0.0.tgz 
+
+
+then add KAFKA_HOME 
+## KAFKA HOME 
+export KAFKA_HOME=/home/fieldengineer/opt/kafka_2.12-2.0.0
+export PATH=$PATH:$KAFKA_HOME/bin
+
+
+##  to start kafka
+## this uses a tab 
+
+to check we can use jps and see QuorumPeerMain
+zookeper-server-start.sh /home/opt/kafka_2_12..../config.zookeeper.properties
+
+
+## but we can run it as a daemon to run it headless
+
+zookeper-server-start.sh -daemon /home/opt/kafka_2_12..../config.zookeeper.properties
+
+## to kill it we can use 
+zookeeper-server-stop.sh
+
+
+opt/kafka/config/server.properties
+we cant have two brokers with the same ID
+server socket properties ----->  9092 is the default port  for the kafka cluster
+in this file we only have to chsnge our broker.id and port to listen
+and maybe the path to store the logs log.dirs
+
+it is best to copy this file and save it as a template and modify the copy for our project. we need a properties file for each broker
+
+as we increase the partitions, the number of brokers icreases too
+
+once zookeeper is running, we can start kafka by calling the properties file we created
+kafka-server-start.sh /home/fieldengineer/opt/kafka_2.12-2.0.0/config/server1.properties
+
+to create a topic
+
+kafka-topic.sh --create --bootstrap-server localhost:9099 --replication-factor 2 --partitions 1 --topic kafkatest1
+
+
+we changed the previous command to: 
+
+kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
+
+** zookeeper runs in 2180 by default
+
+https://stackoverflow.com/questions/55494988/why-is-kafka-not-creating-a-topic-bootstrap-server-is-not-a-recognized-option/55495032
+
+we can visualize the topic 
+
+
+kafka-topics.sh --describe --zookeeper localhost:2181 --topic kafkatest
+
+
+----> zookeeper 
+you should first start zookeeper first, then kafka
+close kafka first, then zookeeper
+
+
+NOW we have to create a producer 
+
+kafka-console-producer.sh --broker-list localhost:9099 --topic kafkatest
+
+if we are running a kafka cluter we use the defaultport of the custer 9092
+
+NOW we create a consumer 
+
+kafka-consoloe-consumer.sh --bootstrap-server localhot:9099 --topic kafkatest
+
+we can initialize a consumer that reads from previous messges with 
+
+kafka-console-consumer.sh --bootstrap-server localhost:9099 --topic kafkatest --from-beginning 
+
+of we can also use --offset 10 to read the previous messages before the new one 
