@@ -1,0 +1,63 @@
+import json
+import logging
+import warnings
+
+import requests
+import urllib3
+import six
+
+
+
+
+
+===============================================================================
+    def _get(self, url, args=None, payload=None, **kwargs):
+        if args:
+            kwargs.update(args)
+
+        return self._internal_call("GET", url, payload, kwargs)
+
+## get only returns what type of query is and the id of the queryed object
+## querying artist + artist ID    -->>>>/artists/2BTZIqw0ntH9MvilQ3ewNY
+
+================================================================================
+
+
+    def album(self, album_id):
+        """ returns a single album given the album's ID, URIs or URL
+            Parameters:
+                - album_id - the album ID, URI or URL
+        """
+
+        trid = self._get_id("album", album_id)
+        return self._get("albums/" + trid)
+
+===============================================================================
+    def search(self, q, limit=10, offset=0, type="track", market=None):
+        """ searches for an item
+            Parameters:
+                - q - the search query (see how to write a query in the
+                      official documentation https://developer.spotify.com/documentation/web-api/reference/search/search/)  # noqa
+                - limit  - the number of items to return (min = 1, default = 10, max = 50)
+                - offset - the index of the first item to return
+                - type - the type of item to return. One of 'artist', 'album',
+                         'track', 'playlist', 'show', or 'episode'
+                - market - An ISO 3166-1 alpha-2 country code or the string
+                           from_token.
+        """
+        return self._get(
+            "search", q=q, limit=limit, offset=offset, type=type, market=market
+        )
+
+
+================================================================================
+
+from spotipy.oauth2 import SpotifyClientCredentials
+import spotipy
+
+client_credentials_manager = SpotifyClientCredentials()
+sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
+
+results = sp.search(q='weezer', limit=20)
+for i, t in enumerate(results['tracks']['items']):
+    print(' ', i, t['name'])

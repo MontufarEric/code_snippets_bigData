@@ -1,0 +1,16 @@
+For this project, Spotify data will be analyzed 
+
+two offsets in kafka
+broker ----> server 
+10k transactions per second in kafka per broker 
+16/24 kb per transaction 
+
+=============================================================================
+
+https://docs.python.org/3/library/argparse.html
+postman 
+fiddler
+https://restfulapi.net/http-status-codes/
+
+=============================================================================
+
