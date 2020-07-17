@@ -1,0 +1,130 @@
+## GIT TUTORIAL 
+## https://www.youtube.com/watch?v=HVsySz-h9r4&list=PL-osiE80TeTuRUfjRe54Eea17-YfnOOAx
+
+
+# to install git from command line 
+
+sudo apt install git
+
+# git --version to see whether it was installed
+
+git --version
+
+# set global configuration variables 
+
+git config --global user.name "username"
+git config --global user.email "email@mail.com"
+
+git config --list
+
+# to ask for help about a function
+
+git help <verb>
+git <verb> --help
+
+# to track a local folder with git 
+
+git init 
+
+# to check status of the repo and untracked files 
+
+git status
+
+# we can also ignore files from the commit by adding them to .gitignore
+# we can also add regex to ignore groups of files 
+
+touch .gitignore
+
+echo ".project" >> .gitignore
+echo "file" >> .gitignore
+echo "*.pyc" >> .gitignore
+
+## now we can rerun git status and see that the ignored files are no longer being tracked
+
+## there are three steps in a project working dir ---> staging area ---> .git repo
+
+## in the staging area we can choose what is going to be commited
+
+## now lets add files to the staging area  -A ---> all the not ignored files
+
+git add -A 
+git status 
+
+## we can also add files individually
+## to remove files from the staging area, we can use git reset 
+
+git reset
+git reset fileToRemove
+
+## now lets do a commit  git log ---> commit history 
+
+git add -A
+git commit -m "A message -m ---> message"
+git status
+git log
+
+
+## we can also track existing remote repositories 
+
+git clone <url> <where to clone>
+git clone https://github.com/myrepo.git ./myRepo
+
+## now we can view information about that repo location and branches localy and remotely 
+
+git myRepo -v 
+git brach -a
+
+
+## once we modify one of the files, we can track the changes
+
+git diff
+git status
+
+## lets commit those changes
+
+git add -A
+git status 
+git commit -m "changes we did"
+
+## before adding changes to our remote repo, it is important to do a pull
+## to update your repo with the changes that the other contriutors did to it 
+## origin ---> name of the remote repo   master ---> branch we are pushing to 
+
+git pull origin master
+git push origin master 
+
+## the common workflow is to create a branch when you are working on a desired feature  
+
+git branch ourFeature
+
+## check for the active branches with git branch -a  and start working on the new branch
+
+git checkout ourFeature 
+
+## now we can commit the changes in the code to the branch
+
+git status
+git add -A
+git commit -m "message"              # this has no effect on our master banch
+git push -u origin ourFeature        
+
+## now we can see that our branch is also on the remote repo 
+
+git branch -a
+
+## now we can run unit tests in our code and once our code is ready, we can merge it with the master branch
+## remember to pull before doing a push or a merge
+
+git checkout master
+git pull origin master
+git banch --merged
+git merge ourFeature
+git push origin master
+
+# once the branch is merged in the remote repository, we can delete the branch we created
+#the branch should be deleted from the local and remote repository
+
+git branch --merged
+git branch -d ourFeature
+git branch -a
+git push origin --delete ourFeatue

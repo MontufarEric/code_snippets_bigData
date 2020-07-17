@@ -33,7 +33,7 @@ zookeper-server-start.sh /home/opt/kafka_2_12..../config.zookeeper.properties
 
 ## but we can run it as a daemon to run it headless
 
-zookeper-server-start.sh -daemon /home/opt/kafka_2_12..../config.zookeeper.properties
+zookeper-server-start.sh -daemon /home/opt/kafka_2_12..../config/zookeeper.properties
 
 ## to kill it we can use 
 zookeeper-server-stop.sh
@@ -50,6 +50,8 @@ it is best to copy this file and save it as a template and modify the copy for o
 as we increase the partitions, the number of brokers icreases too
 
 once zookeeper is running, we can start kafka by calling the properties file we created
+
+
 kafka-server-start.sh /home/fieldengineer/opt/kafka_2.12-2.0.0/config/server1.properties
 
 to create a topic
@@ -84,10 +86,16 @@ if we are running a kafka cluter we use the defaultport of the custer 9092
 
 NOW we create a consumer 
 
-kafka-consoloe-consumer.sh --bootstrap-server localhot:9099 --topic kafkatest
+kafka-console-consumer.sh --bootstrap-server localhost:9099 --topic kafkatest
 
 we can initialize a consumer that reads from previous messges with 
 
 kafka-console-consumer.sh --bootstrap-server localhost:9099 --topic kafkatest --from-beginning 
 
 of we can also use --offset 10 to read the previous messages before the new one 
+
+
+in the kafka config file we can modify 3 properties, port, broker number, and file to store data
+
+
+There are two tpes of aknowledgement checks. One from producer to broker, one from broker to consumer. 
