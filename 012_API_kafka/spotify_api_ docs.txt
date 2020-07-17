@@ -1,0 +1,11 @@
+spotify api docs 
+
+https://developer.spotify.com/documentation/general/guides/authorization-guide/
+
+https://developer.spotify.com/documentation/web-api/reference-beta/#object-trackobject
+
+https://www.youtube.com/watch?v=xdq6Gz33khQ
+
+https://developer.spotify.com/documentation/web-api/reference/search/search/
+
+https://github.com/plamere/spotipy/blob/master/spotipy/client.py
