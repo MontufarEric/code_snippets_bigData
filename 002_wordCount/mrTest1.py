@@ -29,9 +29,12 @@ def write_file(word_freq):
 
 
 # then we read the text we are goin to process
-with open('./Shakespeare.txt') as f:
-    content = f.read()
 
-list_of_words = prep(content)
-write_file(reduceByKey((list_of_words)))
+if __name__ == __main__():
+	with open('./Shakespeare.txt') as f:
+	    content = f.read()
+
+	    list_of_words = prep(content)
+	    print(list_of_words)
+	    write_file(reduceByKey((list_of_words)))
 
