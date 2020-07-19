@@ -1,0 +1,38 @@
+#SPARK 
+
+wget https://archive.apache.org/dist/spark/spark-2.4.4/spark-2.4.4-bin-hadoop2.7.tgz
+
+## Add spark home
+
+## SPARK HOME 
+export SPARK_HOME=/home/fieldengineer/opt/spark-2.4.4
+export PATH=$PATH:$SPARK_HOME/bin
+
+# try it with 
+
+spark-shell
+
+# you can write scala code to test that spark is working 
+## Setting up PYSPARK
+
+# At this point we already have java and spark working, so just download pyspark
+
+pip3 install pyspark 
+
+# go to your .bash_profile file and add the following line 
+
+export PYSPARK_PYTHON=python3
+source .bash_profile 
+pyspark
+
+   ____              __
+  / __/__  ___ _____/ /__
+ _\ \/ _ \/ _ `/ __/  '_/
+/__ / .__/\_,_/_/ /_/\_\   version 2.4.4
+   /_/
+
+
+# now you can write python code and user the spark funtionalities with sc.function 
+
+https://towardsdatascience.com/how-to-get-started-with-pyspark-1adc142456ec
+https://towardsdatascience.com/how-to-use-pyspark-on-your-computer-9c7180075617
