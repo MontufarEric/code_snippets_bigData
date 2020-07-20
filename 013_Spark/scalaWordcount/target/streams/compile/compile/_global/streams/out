@@ -1,0 +1,4 @@
+[0m[[0m[31merror[0m] [0m[0m/home/fieldengineer/Documents/data_plumbers/013_Spark/scalaWordcount/src/main/scala/wc.scala:13:74: value toMap is not a member of org.apache.spark.sql.Dataset[(String, Int)][0m
+[0m[[0m[31merror[0m] [0m[0m	val counts = tf.flatMap(line => line.split(" ")).map(word => (word, 1)).toMap()[0m
+[0m[[0m[31merror[0m] [0m[0m	                                                                        ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m

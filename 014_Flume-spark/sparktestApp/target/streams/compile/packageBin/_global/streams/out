@@ -1,0 +1,13 @@
+[0m[[0m[0mdebug[0m] [0m[0mPackaging /home/fieldengineer/Documents/data_plumbers/014_Flume-spark/sparktestApp/target/scala-2.11/spark-test_2.11-0.1.jar ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mInput file mappings:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	guru[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/fieldengineer/Documents/data_plumbers/014_Flume-spark/sparktestApp/target/scala-2.11/classes/guru[0m
+[0m[[0m[0mdebug[0m] [0m[0m	guru/learningjournal[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/fieldengineer/Documents/data_plumbers/014_Flume-spark/sparktestApp/target/scala-2.11/classes/guru/learningjournal[0m
+[0m[[0m[0mdebug[0m] [0m[0m	guru/learningjournal/examples[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/fieldengineer/Documents/data_plumbers/014_Flume-spark/sparktestApp/target/scala-2.11/classes/guru/learningjournal/examples[0m
+[0m[[0m[0mdebug[0m] [0m[0m	guru/learningjournal/examples/SparkTestApp$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/fieldengineer/Documents/data_plumbers/014_Flume-spark/sparktestApp/target/scala-2.11/classes/guru/learningjournal/examples/SparkTestApp$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	guru/learningjournal/examples/SparkTestApp.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/fieldengineer/Documents/data_plumbers/014_Flume-spark/sparktestApp/target/scala-2.11/classes/guru/learningjournal/examples/SparkTestApp.class[0m
+[0m[[0m[0mdebug[0m] [0m[0mDone packaging.[0m

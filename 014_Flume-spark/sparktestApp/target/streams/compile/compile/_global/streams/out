@@ -1,0 +1,7 @@
+[0m[[0m[31merror[0m] [0m[0m/home/fieldengineer/Documents/data_plumbers/014_Flume-spark/sparktestApp/src/main/scala/test.scala:16:4: unclosed string literal[0m
+[0m[[0m[31merror[0m] [0m[0m   "select age, count(*) as frequency[0m
+[0m[[0m[31merror[0m] [0m[0m   ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/fieldengineer/Documents/data_plumbers/014_Flume-spark/sparktestApp/src/main/scala/test.scala:18:4: unclosed string literal[0m
+[0m[[0m[31merror[0m] [0m[0m   ")[0m
+[0m[[0m[31merror[0m] [0m[0m   ^[0m
+[0m[[0m[31merror[0m] [0m[0mtwo errors found[0m
