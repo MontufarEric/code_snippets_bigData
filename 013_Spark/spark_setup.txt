@@ -36,3 +36,10 @@ pyspark
 
 https://towardsdatascience.com/how-to-get-started-with-pyspark-1adc142456ec
 https://towardsdatascience.com/how-to-use-pyspark-on-your-computer-9c7180075617
+
+
+## TO USE PYSPARK WITH JUPYTER NOTEBOOK 
+# TO be able to use pyspark within a jupter notebook, it is necessary to add the following lines to .bash_profile
+
+export PYSPARK_DRIVER_PYTHON="jupyter"
+export PYSPARK_DRIVER_PYTHON_OPTS="notebook"

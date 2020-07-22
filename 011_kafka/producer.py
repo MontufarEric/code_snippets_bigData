@@ -8,7 +8,7 @@ f = open('/home/fieldengineer/Documents/Shakespeare.txt', 'r')
 line_list = f.readlines()
 
 for e in range(len(line_list)):
-	producer.send('bigdata',json.dumps(line_list[e]).encode('utf-8'))
+	producer.send('testApi',json.dumps(line_list[e]).encode('utf-8'))
 	sleep(1)
 	
 
