@@ -1,0 +1,21 @@
+# nifi 
+
+nice gui but no replication 
+not distributed 
+like kafka but a bit limitated 
+
+wget https://archive.apache.org/dist/nifi/1.9.0/nifi-1.9.0-bin.tar.gz
+
+cd nifi 
+
+bash_profile
+
+export NIFI_HOME=/home/...../nifi-1.9.0
+eport PATH=$PATH:$NIFI_HOME/bin
+
+initialize with 
+nifi.sh  start
+nifi.sh  status 
+
+nifi runs in port 8080 by default so you can access
+localhost:8080

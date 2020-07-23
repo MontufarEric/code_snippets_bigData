@@ -1,0 +1,61 @@
+CAP theorem consistency availability partition tolerance ---> olap - oltp
+analytical vs transactional ---> we cannot edit data in olap in an individual way 
+
+
+
+downloading hive 
+https://archive.apache.org/dist/hive/hive-2.3.5/apache-hive-2.3.5-bin.tar.gz
+
+you have to configure hdfs for hive 
+----> hive_env.sh
+----> hive-site.xml
+
+
+tar xvf hive
+
+export HIVE_HOME=/home/fieldengineer/opt/hive-2.3.5
+export PATH=$PATH:$HIVE_HOME/bin
+
+
+
+source .bash_profile 
+
+cd hive/conf 
+ls 
+
+sudo nano hive-site.xml
+export HADOOP_HOME=/home/fieldengineer/opt/hadoop-3.1.3
+export HADOOP_HEAPSIZE=512
+export HIVE_CONF_DIR=/home/fieldengineer/opt/hive-2.3.5/conf
+
+create a copy of the conf template 
+
+cp hive-env.sh.template hive-env.sh
+
+paste into hive-env.sh
+
+hdfs dfs -mkdir user/hive/warehouse 
+hdfs dfs -mkdir tmp
+hdfs dfs -chmod g+w user/hive/warehouse 
+hdfs dfs -chmod g+w tmp
+
+cd opt/hive-2.3.5
+mkdir metastore_db
+cd metastore
+
+
+create /home/fieldengineer/opt/hive-2.3.5/metastore_db
+and replace the hive-site.xml parameter databasename to this path 
+
+sudo gedit hve-env.sh 
+and add hadoop home, heapsize and hive conf 
+
+cd opt/hive-2.3.5
+mv lib/log4j-slf4j-impl-2.6.2.jar lib/log4j-slf4j-impl-2.6.2.jar.bak
+
+Now we should be sure that our guava files match (common error)
+
+go to and rm  opt/hive/lib/guava..
+
+then go to  and copy 
+cp opt/hadoop/share/hdfs/lib/guava..  /opt/hive/lib

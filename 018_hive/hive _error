@@ -1,0 +1,5 @@
+ hive --service metastore
+2020-07-23 15:36:51: Starting Hive Metastore Server
+Exception in thread "org.apache.hadoop.hive.common.JvmPauseMonitor$Monitor@7407b31d" java.lang.IllegalAccessError: tried to access method com.google.common.base.Stopwatch.<init>()V from class org.apache.hadoop.hive.common.JvmPauseMonitor$Monitor
+	at org.apache.hadoop.hive.common.JvmPauseMonitor$Monitor.run(JvmPauseMonitor.java:176)
+	at java.lang.Thread.run(Thread.java:748)
