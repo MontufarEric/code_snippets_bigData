@@ -1,0 +1,2 @@
+https://mvnrepository.com/artifact/org.apache.spark/spark-streaming-flume-sink_2.11/2.4.4
+https://mvnrepository.com/artifact/org.apache.spark/spark-streaming-flume-assembly_2.11/2.4.4
