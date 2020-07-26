@@ -59,3 +59,11 @@ go to and rm  opt/hive/lib/guava..
 
 then go to  and copy 
 cp opt/hadoop/share/hdfs/lib/guava..  /opt/hive/lib
+
+
+then start the services 
+schematool -initSchema -dbType derby
+hive --service metastore
+ if everything is OK, you can open a new window and initialize hive with : 
+hive 
+
