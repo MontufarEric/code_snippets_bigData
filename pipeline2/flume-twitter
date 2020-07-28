@@ -5,10 +5,10 @@ TwitterAgent.sinks = HDFS
   
 # Describing/Configuring the source 
 TwitterAgent.sources.Twitter.type = org.apache.flume.source.twitter.TwitterSource
-TwitterAgent.sources.Twitter.consumerKey = 6u1RYaoN36WQXoVsTjIa950sX
-TwitterAgent.sources.Twitter.consumerSecret = DHn0yeFrYU98SlCiYQ7AS9hcEhTvWSKDfPFmm6pBQ7SQxueZNo
-TwitterAgent.sources.Twitter.accessToken = 3054476150-zA5TfsYULFhxugN4qFXJo06RdHj6G1HgnopUP91
-TwitterAgent.sources.Twitter.accessTokenSecret = mznQbpHniN9Df3k0Zu0zgrUwxFoQt0TbG3KowfzjnPtoL
+TwitterAgent.sources.Twitter.consumerKey = 
+TwitterAgent.sources.Twitter.consumerSecret = 
+TwitterAgent.sources.Twitter.accessToken = 
+TwitterAgent.sources.Twitter.accessTokenSecret =
 
 TwitterAgent.sources.Twitter.keywords = scala
 TwitterAgent.sources.Twitter.language = en
