@@ -33,7 +33,7 @@ zookeper-server-start.sh /home/opt/kafka_2_12..../config.zookeeper.properties
 
 ## but we can run it as a daemon to run it headless
 
-zookeper-server-start.sh -daemon /home/opt/kafka_2_12..../config/zookeeper.properties
+zookeeper-server-start.sh -daemon /home/fieldengineer/opt/kafka_2.12-2.0.0/config/zookeeper.properties
 
 ## to kill it we can use 
 zookeeper-server-stop.sh
@@ -52,7 +52,7 @@ as we increase the partitions, the number of brokers icreases too
 once zookeeper is running, we can start kafka by calling the properties file we created
 
 
-kafka-server-start.sh /home/fieldengineer/opt/kafka_2.12-2.0.0/config/server1.properties
+kafka-server-start.sh -daemon /home/fieldengineer/opt/kafka_2.12-2.0.0/config/server1.properties
 
 to create a topic
 
@@ -70,7 +70,7 @@ https://stackoverflow.com/questions/55494988/why-is-kafka-not-creating-a-topic-b
 we can visualize the topic 
 
 
-kafka-topics.sh --describe --zookeeper localhost:2181 --topic kafkatest
+kafka-topics.sh --describe --zookeeper localhost:2181 --topic test
 
 
 ----> zookeeper 

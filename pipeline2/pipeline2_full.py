@@ -32,7 +32,7 @@ def savetheresult( rdd ):
     if not rdd.isEmpty():
     	df = spark.createDataFrame(rdd)
     	# toSQL(df)
-    	df.write.save("points_json", format="json", mode="append")
+    	df.write.save("songs_json", format="json", mode="append")
  
 
 lines = ssc.textFileStream("hdfs://localhost:9000//user/twitter_data")
