@@ -31,7 +31,7 @@ def toSQL(df):
 def savetheresult( rdd ):
     if not rdd.isEmpty():
     	df = spark.createDataFrame(rdd)
-    	# toSQL(df)
+    	toSQL(df)
     	df.write.save("songs_json", format="json", mode="append")
  
 
