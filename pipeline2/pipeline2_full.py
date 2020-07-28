@@ -21,7 +21,7 @@ def toSQL(df):
 	df.write.format("jdbc")\
 	.mode("overwrite")\
 	.option("url", "jdbc:mysql://localhost:3306/dp") \
-	.option("dbtable", "hashtgs") \
+	.option("dbtable", "ht") \
 	.option("user", "sqoop_user") \
 	.option("password", "Password1234!") \
 	.option("driver", "com.mysql.jdbc.Driver") \
@@ -31,7 +31,7 @@ def toSQL(df):
 def savetheresult( rdd ):
     if not rdd.isEmpty():
     	df = spark.createDataFrame(rdd)
-    	# toSQL(df)
+    	toSQL(df)
     	df.write.save("songs_json", format="json", mode="append")
  
 
