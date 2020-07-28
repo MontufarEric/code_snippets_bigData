@@ -1,0 +1,17 @@
+hortonworks 
+
+start the machine headless
+to access as a developer user: maria_dev pass_ maria_dev
+
+you wouldn't be able to modify many things since youre not an admin 
+
+to log via ssh: 
+
+ssh maria_dev@127.0.0.1 -p 2222
+pass: maria_dev
+
+you can go to localhost:8080 to manage your tools 
+
+cd .. to go home
+
+you can start your tools from the ui 
