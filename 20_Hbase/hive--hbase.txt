@@ -1,0 +1,57 @@
+
+create external table if not exists test_table(
+    id INT,
+    fname STRING, 
+    lname STRING,
+    address STRING,
+    city STRING, 
+    phone STRING,
+    zip INT,
+    email STRING)
+    ROW FORMAT DELIMITED
+    FIELDS TERMINATED BY ','
+    STORED AS TEXTFILE
+    Tblproperties("skip.header.line.count"="1");
+
+
+
+
+LOAD DATA LOCAL INPATH '/home/fieldengineer/Documents/data_plumbers/004_SQL/Employee.csv' INTO TABLE test_table; 
+
+
+
+
+CREATE TABLE test_table_hbase(
+    id INT,
+    fname STRING, 
+    lname STRING,
+    address STRING,
+    city STRING, 
+    phone STRING,
+    zip INT,
+    email STRING)
+  STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
+  WITH SERDEPROPERTIES ("hbase.columns.mapping" = ":key,cf:firstName_hb,cf:lastName_hb,cf:address,cf:city,cf:phoneNumber,cf:zip,cf:email")
+  TBLPROPERTIES ("hbase.table.name" = "test_hbase", "hbase.mapred.output.outputtable"="test_HBase");
+
+
+
+  INSERT INTO TABLE test_table_hbase SELECT * FROM test_table;
+
+
+error ::  hive Error: Could not find or load main class mapreduce.v2.app.MRAppMaster
+
+
+
+<property>
+ <name>yarn.app.mapreduce.am.env</name>
+ <value>HADOOP_MAPRED_HOME=$HADOOP_HOME</value>
+</property>
+<property>
+ <name>mapreduce.map.env</name>
+ <value>HADOOP_MAPRED_HOME=$HADOOP_HOME</value>
+</property>
+<property>
+ <name>mapreduce.reduce.env</name>
+ <value>HADOOP_MAPRED_HOME=$HADOOP_HOME</value>
+</property>
