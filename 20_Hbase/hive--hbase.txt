@@ -55,3 +55,7 @@ error ::  hive Error: Could not find or load main class mapreduce.v2.app.MRAppMa
  <name>mapreduce.reduce.env</name>
  <value>HADOOP_MAPRED_HOME=$HADOOP_HOME</value>
 </property>
+
+
+
+https://bigdataprogrammers.com/data-migration-from-hive-to-hbase/

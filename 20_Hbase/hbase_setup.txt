@@ -68,3 +68,4 @@ hbase shell
 stop-hbase.sh
 
 https://bigdataprogrammers.com/data-migration-from-hive-to-hbase/
+https://www.osradar.com/how-to-install-hbase-on-ubuntu-18-04/
