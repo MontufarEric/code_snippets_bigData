@@ -1,0 +1,68 @@
+hbase installation 
+
+download hbase
+
+wget https://archive.apache.org/dist/hive/hive-2.3.5/apache-hive-2.3.5-bin.tar.gz
+cd opt
+
+tar xvf hbase...
+
+## HIVE  HOME 
+export HBASE_HOME=/home/fieldengineer/opt/HBase
+export PATH=$PATH:$JAVA_HOME/bin:$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$HBASE_HOME/bin
+
+
+cd Hbase and create a folder called zookeeper
+
+mkdir zookeeper
+
+open hbase-env.sh and paste your JAVA_HOME 
+
+JAVA_HOME=/home/fieldengineer/opt/jdk1.8.0_221
+
+
+open hbase-site.xml and paste the following conf and replace the route to your zookeeper folder: 
+
+
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+
+<configuration>
+<property>
+       <name>hbase.rootdir</name>
+       <value>hdfs://localhost:9000/hbase</value>
+</property>
+
+    <property>
+        <name>hbase.zookeeper.property.dataDir</name>
+       <value>/home/fieldengineer/opt/HBase/zookeeper</value>
+</property>
+
+<property>
+       <name>hbase.cluster.distributed</name>
+      <value>true</value>
+      </property>
+<property>
+            <name>hbase.master.port</name>
+            <value>60001</value>
+</property>
+
+<property>
+    <name>hbase.zookeeper.quorum</name>
+    <value>localhost</value>
+ </property>
+
+ </configuration>
+
+
+source .bash_profile 
+
+start hadoop and run hbase 
+
+start-all.sh
+start-hbase.sh
+
+hbase shell
+
+stop-hbase.sh

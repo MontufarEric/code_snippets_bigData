@@ -1,0 +1,3 @@
+empno, ename, designation, manager, sal, deptno
+1, juan, emp, 12, 300, 30001
+2,pedro, emp, 14, 400, 30002
