@@ -29,6 +29,6 @@ duration_ms INT NOT NULL,
 PRIMARY KEY (id)
 );
 
-spark-submit --jars spark-streaming-kafka-0-8-assembly_2.11-2.4.4.jar --packages mysql:mysql-connector-java:5.1.39 pyspark_kafka_twitter_consumer.py
+spark-submit --jars spark-streaming-kafka-0-8-assembly_2.11-2.4.4.jar --packages mysql:mysql-connector-java:5.1.39 pyspark_kafka_spotify_consumer.py
 
 Once the consumer is running, we can proceed to initialize our kafka producer and input a title for the songs we want to browse in spotify and add to our database. The name, port, driver and table of the database should match with the consumer code. Also be sure to match the schema of the table with the dataframe you're sending. 

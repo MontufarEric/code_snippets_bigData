@@ -39,10 +39,10 @@ an SQL table to out hdfs
 
 
 jdbc:mysql://localhost/hadoop_user   	----->> the name of your database with the proper conector 
-db_test									----->> the user of mysql that you already created 
-Password1234!							----->> your password for that mysql user 
-your_table 								----->> your table in mysql
-1										----->> your replication factor 
+db_test					----->> the user of mysql that you already created 
+Password1234!				----->> your password for that mysql user 
+your_table 				----->> your table in mysql
+1					----->> your replication factor 
 
 10. Lastly you can check whether the database is on your hdfs
 	hdfs dfs -cat /your_folder 

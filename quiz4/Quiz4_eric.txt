@@ -1,0 +1,31 @@
+1. The spark architecture is a master-slave architecture where the master has a driver with operates with a spark context either in local or in cluster. The instructions of the code are converted into a DAG (Directed Acyclic Graph) of transformations and actions and is sent to the cluster manager. The cluster manager keeps track of the active nodes in the cluster and the execution of the job. The job is splited in tasks that are sent to the worker nodes where the executors perform the tasks and send back the information to the cluster manager to be displayed in the master node. 
+
+
+2. Sliding windows are important because they act like a buffer of data. These type of windoes have a constant update and size and take data from the indices covered by the window allowing overlaping. Windows can be cached to process them right away and it is available in Spark streaming and Structured Streaming. 
+
+3. The apache Kafka architecture has three main components: producer, broker and consumer.
+The producer is a the one that takes data from the sourse and send that data to a topic in the kafka broker. The broker is the instance that manages the comunication and keeps register of the offsets, that is, gives an index to every register and keeps track of the last element ingested in by the consumers. The broker has topics to group the the comunication channels.  The consumer is the one that ingests data from a topic in the broker and send feedback to the broker when a message is read.
+
+4. Schema RRDs are thr precursors of the Dataframes and behave similarly. They can be queried with spark SQL but are typed so are less flaxible than spark dataframes.
+
+5. Are numeric values that behave efficiently in map reduce operations.
+
+6. The architecture of apache hive has two main stages, the one that happens in the running hive instance and the one that happens in the hdfs. In the first stage, the queries are analyzed syntactically, processed and sent to the hdfs. In the hdfs the query is executed and it checks for data availability and retrieves either the result of the query or a runtime error. 
+
+7.Spark window takes a constant number of sequential elements of the data for its analysis. Sliding window are more complex, since they move along the data with a fixed step and the data within the window is retrieved. Slidign windows are usually designed to allow overlapping while normal windows are mutually exclusive. 
+
+8. Both, bucketing and partitioning split the data of the hive database. The difference is that bucketing does the split evenly to store the data in disk across the hdfs, while partitioning splits the data to optimize queries. Partitioning can take data from a range of indices of store a particular view. 
+
+9. This happens when spark streaming is reading a Dstream and it is necessary to perform operations and processing in the incoming data. B caching the data you store the RDD in memory to apply operations on it. 
+
+10. Both fucntions allow to save the result of an RDD, however, the main difference between them is that cache is reserved to store the data in memomry. In contrast, persist allow the use of disk to store the data. 
+
+11. Spark streaming was the first type of streaming available in spark. This tool retrieves infromation from a data source in pseudo-real-time by reading mini batches of data as RDDs. In the other hand, Structured streaming is a more complex tool released with spark 2.4 wich performs in real time due to the ease of performing appends to Spark dataframes. In this case, the response of the streaming is not an RDD but a Dtaframe element. An example for Spark Streaming could be reading tweets from Twitter API when the retrieved information is text that can be processed in batches to perform map and reduce operations. For the Structured Streaming, we can visualize a group of sensors measuring temperture so we can create a table with the corresponding measures and append the new ones to eventually perform queries or store the data. 
+
+12. Static partitions are used to load and store data more efficiently in hive. Dynamic partitions are calculated from the data using fields of the database once it is loaded in hive and the partitions are done by a map reduce job. The dynamic partitions allow to perform queries and do ETL more efficiently.  
+
+13. Map is an operation that takes a function an appies that very function to every single element in a collection. Flat map disagregates the data one level and applies the function to all the elements of the disagregated collection of elements. Just as a n x m matrix can be flattened to an array with length n*m, flatmap does the same for the elements of a collection before mapping them. 
+
+14. 
+
+15. ReduceByKey() operates on RDDs and reduce the values based on the keys of the RDD. As this operates in RDDs, it works with distributed data and it is a data transformation. Group by key shuffles the data across the cluster to aggregate the values in an RDD or Dataframe before being partitioned. In summary, ReduceByKey is more efficient memorywise.  
