@@ -6,17 +6,17 @@ import time
 client = boto3.client(
     'kinesis',
     region_name='us-east-2',
-    aws_access_key_id='AKIASKZVWKQSM3X4UWXT',
-    aws_secret_access_key='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'
+    aws_access_key_id='',
+    aws_secret_access_key=''
 )
 
 myheaders = {
 	"x-rapidapi-host": "yelp-com.p.rapidapi.com",
-	"x-rapidapi-key": "a3a614c81amsh073c1eec7f17981p1184abjsn91eba527a088",
+	"x-rapidapi-key": "",
 	"useQueryString": 'true'
 }
 
-x= requests.get('https://yelp-com.p.rapidapi.com/business/DAiqwrmv19Uv-I1bOoAJCQ', headers=myheaders)
+x= requests.get('https://yelp-com.p.rapidapi.com/business/', headers=myheaders)
 t = x.json()
 print(json.dumps(t))
 print(t)
