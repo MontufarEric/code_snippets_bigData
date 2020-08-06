@@ -30,18 +30,6 @@ fields = ("id","title", "popularity", "explicit", "duration_ms" )
 song = namedtuple("song", fields)
 
 
-
-# def toSQL(df):
-# 	df.show().config("spark.sql.warehouse.dir", "/user/hive/warehouse/").config("hive.metastore.uris", "thrift://localhost:9083")
-# 	df.write.format("jdbc")\
-# 	.mode("append")\
-# 	.option("url", "jdbc:mysql://localhost:3306/dp") \
-# 	.option("dbtable", "songs") \
-# 	.option("user", "sqoop_user") \
-# 	.option("password", "Password1234!") \
-# 	.option("driver", "com.mysql.jdbc.Driver") \
-# 	.save()
-
 def savetheresult( rdd ):
     if not rdd.isEmpty():
     	df = spark.createDataFrame(rdd)
