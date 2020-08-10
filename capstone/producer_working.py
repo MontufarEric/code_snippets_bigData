@@ -61,11 +61,9 @@ def getData(videoId):
 
 if __name__ == "__main__": 
 
-	producer = KafkaProducer(bootstrap_servers=['localhost:9099'],
-                         value_serializer=lambda x: 
-                         json.dumps(x).encode('utf-8'))
-
-    api_key = os.environ.get("YOUTUBE_KEY")
+	producer = KafkaProducer(bootstrap_servers=['localhost:9099'],value_serializer=lambda x: json.dumps(x).encode('utf-8'))
+	
+	api_key = os.environ.get("YOUTUBE_KEY")
 	youtube = build('youtube', 'v3', developerKey=api_key)
 
 	users = pd.read_csv('users.csv')
@@ -75,8 +73,8 @@ if __name__ == "__main__":
 	vids = map(lambda x: getVideos(x,5), pl)
 
 	for col in vids: 
-    for vid in col: 
-        print(vid)
-#         print(json.dumps(getData(vid), indent=4))
-        producer.send('test', json.dumps(getData(vid)))
-        sleep(1)
+	    for vid in col: 
+	        print(vid)
+	#         print(json.dumps(getData(vid), indent=4))
+	        producer.send('test', json.dumps(getData(vid)))
+	        sleep(1)

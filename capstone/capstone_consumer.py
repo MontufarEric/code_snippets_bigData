@@ -16,7 +16,7 @@ spark = SparkSession.builder.appName("capstone")\
 sc = SparkContext.getOrCreate()
 
 
-listOfCompanies=['apple', 'samsung', 'huawei', 'xiaomi', 'vivo', 'oppo', 'motorola', 'realme', 'sony', 'oneplus']
+listOfCompanies=['pixel','iphone', 'samsung', 'huawei', 'xiaomi', 'vivo', 'oppo', 'motorola', 'realme', 'sony', 'oneplus']
 
 fields = ("videoId","channelId", "date" , "mobileCompany", "views", "commnets", "likes", "dislikes" )
 video = namedtuple("video", fields)
@@ -24,7 +24,7 @@ video = namedtuple("video", fields)
 video_schema = st.StructType([
 		st.StructField("videoId", st.StringType(), True),
 		st.StructField("channelId", st.StringType(), True),
-		st.StructField("date", st.TimestampType(), True ),
+		st.StructField("creationDate", st.TimestampType(), True ),
 		st.StructField("mobileCompany", st.StringType(), True),
 		st.StructField("views", st.IntegerType(), True),
 		st.StructField("comments", st.IntegerType(), True),
@@ -41,7 +41,19 @@ def  getCompany(t):
 	if len(t)>0:
 		return t[0]
 	else:
-		return 'Null'
+		return 'null'
+
+
+def toSQL(df):
+	# df.show()
+	df.na.drop().write.format("jdbc")\
+	.mode("append")\
+	.option("url", "jdbc:mysql://localhost:3306/dp") \
+	.option("dbtable", "youtube") \
+	.option("user", "sqoop_user") \
+	.option("password", "Password1234!") \
+	.option("driver", "com.mysql.jdbc.Driver") \
+	.save()
 
 
 def savetheresult( rdd ):
@@ -49,6 +61,7 @@ def savetheresult( rdd ):
     	df = spark.createDataFrame(rdd, video_schema)
     	df.show()
     	df.printSchema()
+    	toSQL(df)
     	df.write.format("mongo").mode("append").save()
     	# toSQL(df)
     	# df.write.save("songs_json", format="json", mode="append")

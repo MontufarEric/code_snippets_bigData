@@ -14,10 +14,18 @@ spark = SparkSession.builder.appName("capstone")\
 
 sc = SparkContext.getOrCreate()
 
+
+df2 = spark.read.csv("users.csv",header=True,inferSchema=True)
+df2.show()
+
 yesterday = datetime.now() - timedelta(weeks=+14)
 
 df = spark.read.format("mongo").load()
 df.show()
-df.filter(df.date >= yesterday).show()
+
+innerJoinDf = df.join(df2,"channelId")
+innerJoinDf.show()
+# df.filter(df.date >= yesterday).show()
+
 
 df.printSchema()
