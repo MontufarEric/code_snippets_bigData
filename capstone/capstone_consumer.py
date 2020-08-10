@@ -9,7 +9,10 @@ import re
 import pyspark.sql.types as st 
 from datetime import datetime
 
-spark = SparkSession.builder.appName("capstone").getOrCreate()
+spark = SparkSession.builder.appName("capstone")\
+    .config("spark.mongodb.input.uri", "mongodb://127.0.0.1/test.testYoutube") \
+    .config("spark.mongodb.output.uri", "mongodb://127.0.0.1/test.testYoutube") \
+	.getOrCreate()
 sc = SparkContext.getOrCreate()
 
 
@@ -46,15 +49,16 @@ def savetheresult( rdd ):
     	df = spark.createDataFrame(rdd, video_schema)
     	df.show()
     	df.printSchema()
+    	df.write.format("mongo").mode("append").save()
     	# toSQL(df)
     	# df.write.save("songs_json", format="json", mode="append")
 
 
 
-people = spark.createDataFrame([("Bilbo Baggins",  50), ("Gandalf", 1000), ("Thorin", 195), ("Balin", 178), ("Kili", 77),
-   ("Dwalin", 169), ("Oin", 167), ("Gloin", 158), ("Fili", 82), ("Bombur", None)], ["name", "age"])
+# people = spark.createDataFrame([("Bilbo Baggins",  50), ("Gandalf", 1000), ("Thorin", 195), ("Balin", 178), ("Kili", 77),
+#    ("Dwalin", 169), ("Oin", 167), ("Gloin", 158), ("Fili", 82), ("Bombur", None)], ["name", "age"])
 
-people.write.format("mongo").mode("append").save()
+
 
 #------------------------------STREAMING------------------------------------------------
 
