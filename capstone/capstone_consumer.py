@@ -21,6 +21,8 @@ listOfCompanies=['pixel','iphone', 'samsung', 'huawei', 'xiaomi', 'vivo', 'oppo'
 fields = ("videoId","channelId", "date" , "mobileCompany", "views", "commnets", "likes", "dislikes" )
 video = namedtuple("video", fields)
 
+channels = spark.read.csv("users.csv",header=True,inferSchema=True).drop('_c0')
+
 video_schema = st.StructType([
 		st.StructField("videoId", st.StringType(), True),
 		st.StructField("channelId", st.StringType(), True),
@@ -46,30 +48,38 @@ def  getCompany(t):
 
 def toSQL(df):
 	# df.show()
-	df.na.drop().write.format("jdbc")\
-	.mode("append")\
-	.option("url", "jdbc:mysql://localhost:3306/dp") \
-	.option("dbtable", "youtube") \
-	.option("user", "sqoop_user") \
-	.option("password", "Password1234!") \
-	.option("driver", "com.mysql.jdbc.Driver") \
-	.save()
+
+	df = df.filter(df.language == "EN")
+	if len(df.take(1)) > 0:
+		df.write.format("jdbc")\
+		.mode("append")\
+		.option("url", "jdbc:mysql://localhost:3306/dp") \
+		.option("dbtable", "videos") \
+		.option("user", "sqoop_user") \
+		.option("password", "Password1234!") \
+		.option("driver", "com.mysql.jdbc.Driver") \
+		.save()
 
 
 def savetheresult( rdd ):
     if not rdd.isEmpty():
+
     	df = spark.createDataFrame(rdd, video_schema)
     	df.show()
-    	df.printSchema()
-    	toSQL(df)
-    	df.write.format("mongo").mode("append").save()
-    	# toSQL(df)
-    	# df.write.save("songs_json", format="json", mode="append")
-
-
-
-# people = spark.createDataFrame([("Bilbo Baggins",  50), ("Gandalf", 1000), ("Thorin", 195), ("Balin", 178), ("Kili", 77),
-#    ("Dwalin", 169), ("Oin", 167), ("Gloin", 158), ("Fili", 82), ("Bombur", None)], ["name", "age"])
+    	df = df.filter(df.mobileCompany != "null")
+    	df.show()
+    	if len(df.take(1)) > 0:
+    		df = df.join(channels,"channelId")
+    		df.show()
+    		df.printSchema()
+    		try:
+    			toSQL(df)
+    		except: 
+    			pass
+    		try:
+    			df.write.format("mongo").mode("append").save()
+    		except:
+    			pass
 
 
 
@@ -78,12 +88,16 @@ def savetheresult( rdd ):
 ssc = StreamingContext(sc, 5)
 
 kvs = KafkaUtils.createStream(ssc, 'localhost:2181', 'spark-streaming-consumer', {'test':1})
-data = kvs.map(lambda x: json.loads(x[1]))\
-.map(lambda x: json.loads(x))\
-.map(lambda x: video(x['videoId'], x['channelId'], datetime.strptime(x['date'],'%Y-%m-%dT%H:%M:%SZ' ), 
-	getCompany(x['title']), int(x['stats']['viewCount']), int(x['stats']['commentCount']), 
-	int(x['stats']['likeCount']), int(x['stats']['dislikeCount'])))\
-.foreachRDD(lambda x: savetheresult(x))
+try:
+	data = kvs.map(lambda x: json.loads(x[1]))\
+	.map(lambda x: json.loads(x))\
+	.map(lambda x: video(x['videoId'], x['channelId'], datetime.strptime(x['date'],'%Y-%m-%dT%H:%M:%SZ' ), 
+		getCompany(x['title']), int(x['stats']['viewCount']), int(x['stats']['commentCount']), 
+		int(x['stats']['likeCount']), int(x['stats']['dislikeCount'])))\
+	.foreachRDD(lambda x: savetheresult(x))
+except:
+	print("ERROOOOOOOR")
+	pass
 
 # data.pprint()
 

@@ -18,14 +18,14 @@ sc = SparkContext.getOrCreate()
 df2 = spark.read.csv("users.csv",header=True,inferSchema=True)
 df2.show()
 
-yesterday = datetime.now() - timedelta(weeks=+14)
+yesterday = datetime.now() - timedelta(weeks=+34)
 
 df = spark.read.format("mongo").load()
-df.show()
+# df.show()
 
 innerJoinDf = df.join(df2,"channelId")
-innerJoinDf.show()
-# df.filter(df.date >= yesterday).show()
-
+# innerJoinDf.show()
+# df.filter(df.creationDate >= yesterday).show()
+innerJoinDf.filter(innerJoinDf.mobileCompany != "null").show()
 
 df.printSchema()
