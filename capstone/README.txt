@@ -36,3 +36,7 @@ zookeeper-server-start.sh -daemon /home/fieldengineer/opt/kafka_2.12-2.0.0/confi
 kafka-server-start.sh -daemon /home/fieldengineer/opt/kafka_2.12-2.0.0/config/server1.properties
 
 kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
+
+spark-submit --jars spark-streaming-kafka-0-8-assembly_2.11-2.4.4.jar --packages mysql:mysql-connector-java:5.1.39,org.mongodb.spark:mongo-spark-connector_2.11:2.4.2 capstone_consumer.py
+
+python3 producer_working.py
