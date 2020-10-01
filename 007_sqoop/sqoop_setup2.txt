@@ -46,3 +46,7 @@ your_table 				----->> your table in mysql
 
 10. Lastly you can check whether the database is on your hdfs
 	hdfs dfs -cat /your_folder 
+
+11. LogIn 
+
+mysql -u sqoop_user -p
